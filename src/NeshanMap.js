@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import neshan_map_loader from "./loaders/neshan_map_loader";
+import neshan_map_loader from "./loaders/neshan_map_loader.js";
 import "./NeshanMap.css";
 
 const NeshanMap = (props) => {
@@ -26,11 +26,16 @@ const NeshanMap = (props) => {
   useEffect(() => {
     neshan_map_loader({
       onLoad: () => {
-        let map = new window.L.Map(mapEl.current, { ...defaultOptions, ...options });
+        let map = new window.L.Map(mapEl.current, {
+          ...defaultOptions,
+          ...options,
+        });
         if (onInit) onInit(window.L, map);
       },
       onError: () => {
-        console.error("Neshan Maps Error: This page didn't load Neshan Maps correctly");
+        console.error(
+          "Neshan Maps Error: This page didn't load Neshan Maps correctly"
+        );
       },
     });
   });
